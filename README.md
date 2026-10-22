@@ -107,3 +107,19 @@ Esto se verifica aplicando el PPU y comprobando el tamaño en el Box Collider 2D
 
 Para este experimento se ha colocado la poción de los recursos al lado del personaje y se ha escalado para parecerse a este. El personaje tiene PPU 100 y la poción, 16.
 Al observar los píxeles, se aprecia que la poción tiene los píxeles más grandes que el personaje. Esto ocurre por dos cosas: la diferencia de PPU y el tamaño del sprite. Para evitar este problema, se debe emplear el mismo PPU para todos los sprites del juego. Y si fuera necesario tener dos sprites del mismo tamaño, deberán tener la misma cantidad de píxeles y evitar los escalados.
+
+> Selecciona la Main Camera y comprueba que Projection es Orthographic. Anota su Size. Antes de comprobarlo, calcula cuántas unidades se ven en vertical. Comprueba tu cálculo: coloca dos objetos en y = +size e y = −size. ¿Quedan justo en los bordes de la vista Game? En el desplegable de resolución de la vista Game, cambia entre 16:9, 4:3 y una resolución panorámica (por ejemplo 2560×1080). Observa qué cambia y qué se mantiene. Cambia el Size a 2 y a 10. ¿Cómo cambia el tamaño del personaje en pantalla? Al cambiar la relación de aspecto, ¿qué dimensión se mantiene fija y cuál cambia?Con Size = 5, calcula la anchura visible en 16:9 y en 4:3. Si dos jugadores juegan con monitores distintos, ¿ven la misma cantidad de nivel? ¿En qué tipo de juego sería un problema?
+
+El valor de Size es 2. Como size representa la mitad de la altura visible, deberían verse 4 unidades verticales en la pantalla.
+
+Esto se verifica colocando dos posiciones en +size y -size:
+![Camera Size](./media/size_up_down.png)
+
+Cambiando entre 16:9, 4:3 y resolución panorámica, las posiciones se mantien en la misma posición vertical visiblemente, mientras que los bordes de los laterales se recortan o agrandan.
+
+Como ya estaba en tamaño 2, se disminuye a tamaño 1. El personaje se agranda e incluso se recorta, mientras que al poner el tamaño 10, el personaje se ve muy pequeño.
+![Tamaño 1](./media/size_1.png)
+![Tamaño 1](./media/size_10.png)
+
+Cambiando la relación de aspecto, la dimensión vertical se mantiene mientras que la horizontal es la que cambia. 
+Aplicando Size = 5, tenemos una dimensión vertical de 10. Para calcular la anchura, tendríamos que despejar 16/9 = X/10 -> X = 16*10/9, lo cual nos daría una anchura de 17,78U en ese caso, y 4/3 = X/10 -> X = 13,3U de ancho para el 4:3. Dos jugadores con monitores distintos verían cantidades distintas de nivel. Esto supone un problema principalmente en videojuegos donde es necesario observar el entorno además del centro de la cámara. Por ejemplo, en los shooters, el campo de visión se reduciría, omitiendo a los enemigos que se encuentren en la periferia.
