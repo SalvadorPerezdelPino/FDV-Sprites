@@ -100,3 +100,10 @@ Si queremos que el personaje esté entre 1 y 2 unidades de alto, por ejemplo 1,5
 Esto se verifica aplicando el PPU y comprobando el tamaño en el Box Collider 2D:
 
 ![Tamaño 1,5](./media/size_1_2.png)
+
+> Añade a la escena un segundo objeto con otro sprite de los recursos y ponle un PPU distinto al del personaje. Ajusta la Scale de su Transform hasta que los dos objetos tengan un tamaño parecido en pantalla. Haz zoom en la vista Game y compara el tamaño de los píxeles de ambos sprites.Si los píxeles se ven borrosos, selecciona el atlas y pon Filter Mode = Point (no filter) y Compression = None. Es la configuración que necesita cualquier juego de pixel art. ¿Los píxeles de los dos sprites tienen el mismo tamaño?.¿Qué regla deberían cumplir todos los sprites de un juego para que esto no ocurra?
+
+![Diferencia de píxeles](./media/pixel_diff.png)
+
+Para este experimento se ha colocado la poción de los recursos al lado del personaje y se ha escalado para parecerse a este. El personaje tiene PPU 100 y la poción, 16.
+Al observar los píxeles, se aprecia que la poción tiene los píxeles más grandes que el personaje. Esto ocurre por dos cosas: la diferencia de PPU y el tamaño del sprite. Para evitar este problema, se debe emplear el mismo PPU para todos los sprites del juego. Y si fuera necesario tener dos sprites del mismo tamaño, deberán tener la misma cantidad de píxeles y evitar los escalados.
