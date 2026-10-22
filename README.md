@@ -10,3 +10,21 @@ Al importarlo, automáticamente se ha detectado que es una hoja de múltiples sp
 
 Se ha creado la animación Walk Down y asignado al personaje de la izquierda. Después, se ha creado otra animación Back y se ha asignado al personaje de la derecha. Cada uno tiene un controller diferente porque se han creado las animaciones en objetos diferentes.
 ![Animaciones](./media/animation.gif)
+
+> Creamos los scripts para controlar el movimiento para el personaje. Inicialmente vamos a hacer una versión sin salto. Añadir los scripts necesarios para moverlo por la pantalla. En este caso sólo tendremos que mover las coordenadas (X, Y).  El movimiento de derecha a izquierda lo logramos modificando transform.position(x, y), para ello podemos usar transform.Translate(avance, 0).
+
+> Controlar el movimiento por teclado: el avance se produce si el jugador ha pulsado las teclas flecha izquierda o flecha derecha.
+
+En este caso, combino los apartados 3 y 4 porque de costumbre suelo configurar el input system nuevo al realizar desplazamientos para que sea más cómodo y sencillo.
+
+![Input Actions](./media/input_actions.png)
+
+Tras configurar las acciones, utilizando el siguiente script desplazo al personaje:
+```cs
+void Update()
+{
+    direction = new Vector3(moveAction.action.ReadValue<float>(), 0, 0);
+    transform.Translate(direction * Time.deltaTime * speed);
+}
+```
+![Movimiento](./media/move_sprite.gif)
