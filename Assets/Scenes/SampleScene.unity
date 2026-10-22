@@ -486,6 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveAction: {fileID: -7322436415558706462, guid: c21bb7d21659025499f8b8059429c5a3, type: 3}
+  spriteRenderer: {fileID: 1123769831}
   speed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

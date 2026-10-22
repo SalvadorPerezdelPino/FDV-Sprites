@@ -33,3 +33,26 @@ void Update()
 }
 ```
 ![Movimiento](./media/move_sprite.gif)
+
+> Además necesitamos que el sprite se oriente hacia donde camina, podemos hacerlo usando la propiedad Flip en el eje X en función de si se está moviendo hacia la izquierda (movimiento negativo) o hacia la derecha (movimiento positivo):
+Obtener el componente SpriteRenderer para poder modificar el sprite. Deberías hacerlo sólo una vez.
+Comprobar la dirección del movimiento usando el valor de horizontalInput. 
+Usar una condición if para saber si el personaje se mueve a la derecha.
+Usar una condición else if para saber si se mueve a la izquierda.
+SpriteRenderer spriteRenderer;
+spriteRenderer.flipX
+
+Para esto, añado esta condición:
+```cs
+if (moveX > 0)
+{
+    spriteRenderer.flipX = false;
+} else if (moveX < 0)
+{
+    spriteRenderer.flipX = true;
+}
+```
+En caso de no moverse, se mantiene el último lado hacia al que miraba el personaje.
+
+![Flip sprite](./media/flip_sprite.gif)
+
