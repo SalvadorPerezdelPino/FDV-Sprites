@@ -82,3 +82,21 @@ animator.SetFloat("Distance", distanceThisFrame);
 ```
 Como resultado, la animación cambia con la distancia elegida:
 ![Distancia](./media/distance.gif)
+
+> Experimenta con el concepto de PPU: Abre el Sprite Editor y anota el tamaño en píxeles de uno de los sprites del personaje (ancho × alto).  En el Inspector del atlas, busca el valor de Pixels Per Unit. ¿Cuál tiene por defecto? Calcula cuántas unidades medirá el personaje en la escena. Comprueba tu cálculo: añade al personaje un BoxCollider2D y mira su propiedad Size, o compáralo con la cuadrícula de la vista Scene (cada celda es 1 unidad). Cambia el PPU a 16, 32 y 100, pulsando Apply cada vez. Anota cuánto mide el personaje en cada caso. Al cambiar el PPU, ¿ha cambiado la imagen? ¿Qué ha cambiado entonces?. Elige un PPU para que el personaje mida entre 1 y 2 unidades de alto. ¿Qué valor has elegido y por qué?
+
+El primer sprite es 65x98. Por defecto, está marcado como 100 píxeles por unidad.
+Haciendo la división tamaño de imagen / ppu, obtenemos que el tamaño del personaje en pantalla es de 0.65x0.98 U. 
+Comprobamos que esto es correcto poniéndole un Box Collider 2D:
+![PPU Size](./media/ppu_size.png)
+
+Probando con los diferentes PPUs, tenemos los siguientes tamaños:
+- 16 PPU: 4.0625x6.125 U
+- 32 PPU: 2.03125x3.0625 U
+- 100 PPU: 0.65x0.98 U
+
+La imagen como tal no cambia. El sprite sigue siendo el mismo. Lo que cambia es su representación en el mundo. Cuanto más pequeño sea el PPU, más grande se vuelve el personaje.
+Si queremos que el personaje esté entre 1 y 2 unidades de alto, por ejemplo 1,5, el resultado de dividir tamaño de imagen / PPU deberá ser 1,5. Despejando, obtenemos que tamaño de imagen / 1.5 = PPU. Por tanto, para un alto de 98 píxeles, el PPU debe ser 65,33. 
+Esto se verifica aplicando el PPU y comprobando el tamaño en el Box Collider 2D:
+
+![Tamaño 1,5](./media/size_1_2.png)
