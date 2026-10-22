@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public InputActionReference moveAction;
-    Vector3 direction;
+    Vector2 movement;
     public float speed = 5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = new Vector3(moveAction.action.ReadValue<float>(), 0, 0);
-        transform.Translate(direction * Time.deltaTime * speed);
+        movement = new Vector2(moveAction.action.ReadValue<float>(), 0f); 
+        transform.Translate(movement * Time.deltaTime * speed);
     }
 }

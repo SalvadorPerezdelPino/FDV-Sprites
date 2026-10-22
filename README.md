@@ -15,7 +15,12 @@ Se ha creado la animación Walk Down y asignado al personaje de la izquierda. De
 
 > Controlar el movimiento por teclado: el avance se produce si el jugador ha pulsado las teclas flecha izquierda o flecha derecha.
 
-En este caso, combino los apartados 3 y 4 porque de costumbre suelo configurar el input system nuevo al realizar desplazamientos para que sea más cómodo y sencillo.
+> Necesitarás las instrucciones:
+float horizontalInput = Input.GetAxis("Horizontal");
+Vector2 movement = new Vector2(horizontalInput, 0f); 
+transform.Translate(movement * speed * Time.deltaTime);
+
+En este caso, combino los apartados 3, 4 y 5 porque de costumbre suelo configurar el input system nuevo al realizar desplazamientos para que sea más cómodo y sencillo.
 
 ![Input Actions](./media/input_actions.png)
 
@@ -23,8 +28,8 @@ Tras configurar las acciones, utilizando el siguiente script desplazo al persona
 ```cs
 void Update()
 {
-    direction = new Vector3(moveAction.action.ReadValue<float>(), 0, 0);
-    transform.Translate(direction * Time.deltaTime * speed);
+    movement = new Vector2(moveAction.action.ReadValue<float>(), 0f); 
+    transform.Translate(movement * Time.deltaTime * speed);
 }
 ```
 ![Movimiento](./media/move_sprite.gif)
