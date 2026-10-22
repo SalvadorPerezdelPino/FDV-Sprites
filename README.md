@@ -56,3 +56,29 @@ En caso de no moverse, se mantiene el último lado hacia al que miraba el person
 
 ![Flip sprite](./media/flip_sprite.gif)
 
+> Crear las animaciones del personaje: Para cada animación que queramos agregar a un objeto seleccionamos la colección de sprites que forman la animación y la arrastramos hasta él. Agregaremos todas las animaciones al personaje. El objeto Animator Controller las gestiona en la ejecución.
+Con la animación seleccionada podemos arrastrar el objeto jugador e ir visualizando las animaciones.
+En la pestaña Animator disponemos de una interfaz gráfica que nos permite definir de forma visual la máquina de estados que controla la animación. Por defecto, del estado inicial (Entry) se pasa a la animación Idle. Las transiciones pueden estar controladas por parámetros que nos permitirán definir scripts asociados controlados por valores que tome el parámetro.
+private Animator animator;
+animator = GetComponent<Animator>();
+animator.SetBool("isWalking", true);
+Crear un script, en el que el personaje, después de caminar una distancia determinada cambie la animación. Para ello, debes:
+Declarar una variable para ir actualizando en cada frame la distancia recorrida. 
+Una variable que le puedas dar el valor que quieras que active el cambio, si la variable distancia supera el valor, se tiene que pasar a otra animación
+Obtener una referencia al Animator: Tienes que acceder al componente Animator sólo una vez para utilizarlo en el código. Debes obtener una referencia a él en tu script para poder controlar el cambio de una animación a otra.
+En cada frame debes calcular cuánto se ha movido el personaje desde la posición inicial.
+Si la distancia total recorrida supere la distancia de activación, tu script debe indicarle al Animator que reproduzca la nueva animación.
+Calcular la distancia que hay entre la posición actual y la que anterior 
+distanceThisFrame =
+Vector3.Distance(firstPosition, transform.position);
+
+Para hacer esto, se ha creado una variable Distance dentro del animator. Además, se ha incluido la animación Back aparte de la WalkDown. La transición se ha configurado de manera que la condición de transición es que la distancia sea mayor que 2.
+![Distancia](./media/transition_distance.png)
+
+Después, en el código, se han añadido las siguientes líneas en el `Update` para actualizar la distancia y enlazarla a la variable del animator.
+```cs 
+distanceThisFrame = Vector3.Distance(firstPosition, transform.position);
+animator.SetFloat("Distance", distanceThisFrame);
+```
+Como resultado, la animación cambia con la distancia elegida:
+![Distancia](./media/distance.gif)

@@ -5,12 +5,17 @@ public class PlayerController : MonoBehaviour
 {
     public InputActionReference moveAction;
     public SpriteRenderer spriteRenderer;
+    public Animator animator;
     Vector2 movement;
     public float speed = 5;
+
+    float distanceThisFrame;
+    Vector3 firstPosition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction.action.Enable();
+        firstPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -26,5 +31,8 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = true;
         }
         transform.Translate(movement * Time.deltaTime * speed);
+
+        distanceThisFrame = Vector3.Distance(firstPosition, transform.position);
+        animator.SetFloat("Distance", distanceThisFrame);
     }
 }
